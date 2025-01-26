@@ -1,8 +1,12 @@
 #!/bin/bash
 set -eo pipefail
 
-echo '[*] Fetch current timezone from a geoip server'
-TIMEZONE="$(curl -sL 'http://geoip.ubuntu.com/lookup' | sed -n 's/.*<TimeZone>\(.*\)<\/TimeZone>.*/\1/p')"
+TIMEZONE="${1:-$TIMEZONE}"
+
+if [ -z "$TIMEZONE" ]; then
+    echo '[*] Fetch current timezone from a geoip server'
+    TIMEZONE="$(curl -sL 'http://geoip.ubuntu.com/lookup' | sed -n 's/.*<TimeZone>\(.*\)<\/TimeZone>.*/\1/p')"
+fi
 
 if ! grep -q "$TIMEZONE" '/etc/timezone'; then
     echo "[*] Change timezone to \"$TIMEZONE\""
