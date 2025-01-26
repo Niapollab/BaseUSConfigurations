@@ -2,8 +2,14 @@
 set -eo pipefail
 
 LOCALE="${1:-${LOCALE:-ru_RU.UTF-8}}"
+LOCALE_FILES=(
+    '/etc/locale.conf'
+    '/etc/default/locale'
+)
 
-if ! grep -q "LANG=\"$LOCALE\"" '/etc/default/locale'; then
-    echo "[*] Change locale to \"$LOCALE\""
-    sudo sed -i "s/.*\(LANG\s*=\s*\).*/\1\"$LOCALE\"/" '/etc/default/locale'
-fi
+for file in "${LOCALE_FILES[@]}"; do
+    if ! grep -q "LANG=\"$LOCALE\"" "$file"; then
+        echo "[*] Change locale to \"$LOCALE\" in \"$file\" file"
+        sudo sed -i "s/.*\(LANG\s*=\s*\).*/\1\"$LOCALE\"/" "$file"
+    fi
+done
