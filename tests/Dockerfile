@@ -27,7 +27,7 @@ USER "ubuntu"
 COPY 'scripts' '/tmp/scripts/'
 
 # Check for correct installation
-RUN /tmp/scripts/upgrade.sh
+RUN /tmp/scripts/install.sh
 
 # Check for correct upgrade
 RUN /tmp/scripts/upgrade.sh

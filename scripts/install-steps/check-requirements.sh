@@ -1,12 +1,11 @@
 #!/bin/bash
 set -eo pipefail
 
-echo '[*] Check for required packages are installed for upgrade stage'
+echo '[*] Check for required packages are installed for install stage'
 REQUIRED_APPS=(
     'sudo'
     'curl'
-    'add-apt-repository'
-    'git'
+    'zsh'
 )
 
 for app in "${REQUIRED_APPS[@]}"; do
