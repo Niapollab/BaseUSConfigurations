@@ -20,17 +20,20 @@ RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 # Remove apt cache
 RUN rm -rf '/var/cache/apt/archives' '/var/lib/apt/lists/*'
 
+# Copy upgrade script
+COPY 'scripts' '/usr/src/'
+
+# Create symbolic links for init-install and upgrade commands
+RUN for file in 'init-install' 'upgrade'; do ln -s "/usr/src/$file.sh" "/usr/bin/$file"; done
+
 # Set rootless user as default
 USER "ubuntu"
 
-# Copy upgrade script
-COPY 'scripts' '/tmp/scripts/'
-
 # Check for correct installation
-RUN /tmp/scripts/install.sh
+RUN init-install
 
 # Check for correct upgrade
-RUN /tmp/scripts/upgrade.sh
+RUN upgrade
 
 # Set home directory as PWD by default
 WORKDIR "/home/ubuntu"

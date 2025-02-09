@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 
-SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
+SCRIPT_DIR="$(realpath "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 UPGRADE_STEPS="$SCRIPT_DIR/upgrade-steps"
 
 "$UPGRADE_STEPS/check-requirements.sh"

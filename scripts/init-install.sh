@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 
-SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
+SCRIPT_DIR="$(realpath "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 INSTALL_STEPS="$SCRIPT_DIR/install-steps"
 
 "$INSTALL_STEPS/check-requirements.sh"
