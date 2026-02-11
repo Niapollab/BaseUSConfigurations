@@ -14,6 +14,10 @@ RUN apt update -y && \
     'git' \
     'zsh'
 
+# Install iptables and netfilter-persistent as dummies
+RUN touch '/usr/bin/iptables' && chmod +x '/usr/bin/iptables'
+RUN touch '/usr/bin/netfilter-persistent' && chmod +x '/usr/bin/netfilter-persistent'
+
 # Configure passwordless access to sudo for rootless user
 RUN echo "ubuntu ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
@@ -37,6 +41,3 @@ RUN upgrade
 
 # Set home directory as PWD by default
 WORKDIR "/home/ubuntu"
-
-# Login as rootless user
-ENTRYPOINT [ "sudo", "su", "ubuntu" ]

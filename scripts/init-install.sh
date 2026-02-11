@@ -10,3 +10,4 @@ INSTALL_STEPS="$SCRIPT_DIR/install-steps"
 "$INSTALL_STEPS/set-timezone.sh"
 "$INSTALL_STEPS/change-user-shell-to-zsh.sh" 'root'
 "$INSTALL_STEPS/change-user-shell-to-zsh.sh" "$(whoami)"
+"$INSTALL_STEPS/init-base-firewall-input-rules.sh"

@@ -6,6 +6,8 @@ REQUIRED_APPS=(
     'sudo'
     'curl'
     'zsh'
+    'iptables'
+    'netfilter-persistent'
 )
 
 for app in "${REQUIRED_APPS[@]}"; do
