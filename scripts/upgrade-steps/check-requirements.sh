@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 
 echo '[*] Check for required packages are installed for upgrade stage'

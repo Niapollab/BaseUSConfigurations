@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 
 LOCALE="${1:-${LOCALE:-ru_RU.UTF-8}}"
